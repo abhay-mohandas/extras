@@ -6,11 +6,11 @@ user=input("Enter the correct user name:")
 distro_list=["arch","debian"]
 kvm_check="egrep -c '(vmx|svm)' /proc/cpuinfo"
 arch_install  =["sudo pacman -Syu",
-                "sudo pacman -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat ebtables iptables libguestfs",
+                "sudo pacman -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat ebtables iptables libguestfs ovmf --needed",
                 "sudo usermod -a -G libvirt "+user,
                 "sudo reboot"]
 debian_install=["sudo apt update && sudo apt upgrade",
-                "sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager",
+                "sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager ovmf",
                 "sudo adduser "+user+" libvirt && sudo adduser"+user+"libvirt-qemu",
                 "sudo reboot"]
 status="sudo systemctl status libvirtd.service"
