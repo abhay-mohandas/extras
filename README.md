@@ -1,2 +1,2 @@
 # extras
-A repository to store small files and program
+A repository to store small files and programs
