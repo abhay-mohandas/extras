@@ -21,27 +21,14 @@ def archive():
         output = " "
     os.system("7z a -y -mmt=on -mx="+compression_level+" -t"+archive_type+" "+archive_name+" "+archive_file+" "+output)
 
-
 def delete():
     archive_name=input("Enter the name of the archive[Ex: xyz (or) path/of/the/archive/xyz]:")
     archive_file=input("Optionally enter file names to be deleted from within the archive(Leave space to skip):") or " "
-    output_add=input("Enter the output location(Leave blank to place the archive in the current directory):") or ""
-    if output_add:
-        output = "&& mv "+archive_name+" "+output_add
-    else:
-        output = " "
-    os.system("7z d -y -mmt=on "+archive_name+" "+archive_file+" "+output)
+    os.system("7z d -y -mmt=on "+archive_name+" "+archive_file)
     
-
 def extract():
     archive_name=input("Enter the name of the archive[Ex: xyz (or) path/of/the/archive/xyz]:")
-    output_add=input("Enter the output location(Leave blank to place the archive in the current directory):") or ""
-    if output_add:
-        output = "&& mv "+archive_name+" "+output_add
-    else:
-        output = " "
-    os.system("7z e -y -mmt=on "+archive_name+" "+output)
-
+    os.system("7z e -y -mmt=on "+archive_name)
 
 def list_files():
     archive_name=input("Enter the name of the archive[Ex: xyz (or) path/of/the/archive/xyz]:")
