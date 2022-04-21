@@ -11,7 +11,7 @@ arch_install  =["sudo pacman -Syu",
                 "sudo reboot"]
 debian_install=["sudo apt update && sudo apt upgrade",
                 "sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager ovmf",
-                "sudo adduser "+user+" libvirt && sudo adduser"+user+"libvirt-qemu",
+                "sudo adduser "+user+" libvirt && sudo adduser "+user+" libvirt-qemu",
                 "sudo reboot"]
 status="sudo systemctl status libvirtd.service"
 kvm_net=["sudo virsh net-start default","sudo virsh net-autostart default"]
