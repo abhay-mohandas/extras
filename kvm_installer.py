@@ -13,6 +13,7 @@ debian_install=["sudo apt update && sudo apt upgrade",
                 "sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager ovmf",
                 "sudo adduser "+user+" libvirt && sudo adduser "+user+" libvirt-qemu",
                 "sudo reboot"]
+sysd="sudo systemctl enable libvirtd.service && sudo systemctl start libvirtd.service"
 status="sudo systemctl status libvirtd.service"
 kvm_net=["sudo virsh net-start default","sudo virsh net-autostart default"]
 kvm_install=[arch_install,debian_install]
@@ -27,6 +28,7 @@ def installer(distro_index):
     answer=input("Add the user to required groups?(y/n)[Default=y]")
     if answer.lower() != "n":
         os.system(distro[2])
+    os.system(sysd)
     print("KVM status...")
     os.system(status)
     answer=input("Enable networking?(y/n)[Default=y]")
@@ -46,13 +48,11 @@ def installer(distro_index):
 
 
 def find_distro():
-    condition=1
-    distro="arch"
-    while condition:
+    while True:
         print("""Distro names:
         1)Arch
         2)Debian (Same option for Ubuntu)""")
-        distro=input("Enter the distro name [Ex:Arch]:")
+        distro=input("Enter the distro name [Ex:Arch]:") or False
         print(distro)
         if distro.lower() in distro_list:
             print("Installing...")
@@ -71,6 +71,8 @@ Supported Systems:  1)Arch/Arch based distros
                     2)Debian/Debian based distros
                     (including Ubuntu/Ubuntu based distros)
                     
-                    (Press Ctrl+D to Exit)""")
+                    (Press Ctrl+D to Exit)
+
+Note:Requires systemd""")
 
 find_distro()
